@@ -9,7 +9,7 @@ function App() {
 
     useEffect(() => {
         if (userId.trim() !== '') {
-            axios.get(`http://localhost:5000/images/${userId}`)
+            axios.get(`https://mern-gallery-cocr.onrender.com/images/${userId}`)
                 .then(res => setImages(res.data))
                 .catch(err => console.error(err));
         }
@@ -28,7 +28,7 @@ function App() {
         const formData = new FormData();
         formData.append('image', file);
 
-        axios.post(`http://localhost:5000/upload/${userId}`, formData)
+        axios.post(`https://mern-gallery-cocr.onrender.com/upload/${userId}`, formData)
             .then(res => setImages([...images, res.data]))
             .catch(err => {
                 console.error('Upload error:', err);
@@ -37,7 +37,7 @@ function App() {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/images/${userId}/${id}`)
+        axios.delete(`https://mern-gallery-cocr.onrender.com/images/${userId}/${id}`)
             .then(() => setImages(images.filter(image => image._id !== id)))
             .catch(err => {
                 console.error('Delete error:', err);
@@ -72,7 +72,7 @@ function App() {
             <div className="gallery">
                 {images.map((image) => (
                     <div key={image._id} className="image-container">
-                        <img src={`http://localhost:5000${image.url}`} alt="Uploaded" className="image" />
+                        <img src={`https://mern-gallery-cocr.onrender.com${image.url}`} alt="Uploaded" className="image" />
                         <button onClick={() => handleDelete(image._id)} className="delete-button">Delete</button>
                     </div>
                 ))}
